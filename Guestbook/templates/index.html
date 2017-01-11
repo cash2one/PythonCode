@@ -1,0 +1,46 @@
+<?xml version="1.0.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 //EN"
+	"http://www.w3.org/TR/xhtml11/DTD xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Guestbook</title>
+        <link rel="stylesheet" href="/static/main.css" type="text/css" />
+
+	</head>
+	<body>
+        <div id="main">
+		    <h1>Guestbook</h1>
+            <div id="form-area">
+
+		    <P>Please comment here:</P>
+		    <form action="/post" method="post">
+			    <table>
+				    <tr>
+					    <th>Name</th>
+					    <td>
+						    <input type="text" size="20" name="name">
+				    	</td>
+				    </tr>
+				    <tr>
+					    <th>Comment</th>
+					    <td>
+						    <textarea rows="5" cols="40" name="comments"></textarea>
+			    		</td>
+				    </tr>
+		    	</table>
+			    <p><button type="submit">Commit</button></p>
+	    	</form>
+            </div>
+            <div id="entries-area">
+                <h2>The comments history</h2>
+                <div class="entry">
+				{% for greeting in greeting_list %}
+                <h3>{{greeting.name}} wrote comments({{greeting.create_at|datetime_fmt}}):</h3>
+                    <p>{{greeting.comment|nl2br }}</p>
+				{% endfor %}
+                </div>
+            </div>
+        </div>
+	</body>
+</html>
